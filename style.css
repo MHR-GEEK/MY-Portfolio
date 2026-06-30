@@ -11,7 +11,7 @@
 html { font-size: 100%; }
 body {
     font-family: 'Inter', sans-serif;
-    background: #000;                     /* fallback AMOLED black */
+    background: #000;                     /* fallback black */
     color: #fff;
     min-height: 100vh;
     overflow-x: hidden;
@@ -23,23 +23,24 @@ body {
 }
 
 /* -------------------------------------------------
-   LIVE WALLPAPER – local GIF
+   LIVE WALLPAPER – **LOCAL GIF**
    ------------------------------------------------- */
 .wallpaper {
     position: fixed;
     inset: 0;
-    background: url('batman-rain-gif-desktop-wallpaper.gif')
+    /* ---->  THIS LINE MUST POINT to the exact file name  <---- */
+    background: url('rain-wallpaper.gif')   /* <-- change if you rename the file */
                 center / cover no-repeat;
-    z-index: -3;
+    z-index: -3;               /* behind everything else */
 }
 
 /* -------------------------------------------------
-   RAIN – three CSS layers for depth
+   RAIN – three CSS layers for depth (still works on top of the GIF)
    ------------------------------------------------- */
 .rain {
     position: fixed;
     inset: 0;
-    pointer-events: none;
+    pointer-events: none;                 /* never blocks clicks */
     overflow: hidden;
     z-index: -2;
 }
@@ -50,7 +51,7 @@ body {
     background-image:
         linear-gradient(transparent, rgba(255,255,255,.15) 50%, transparent);
     background-repeat: repeat;
-    background-size: 2px 100px;
+    background-size: 2px 100px;           /* width of a drop, height of its trail */
     animation: fall 1.5s linear infinite;
 }
 .rain::before {
