@@ -22,33 +22,27 @@ body {
     padding: 2rem 1rem;
 }
 
-/* ==============================================================
-   LIVE WALLPAPER – replace the placeholder URL with your own GIF
-   ============================================================== */
+/* -------------------------------------------------
+   LIVE WALLPAPER – local GIF
+   ------------------------------------------------- */
 .wallpaper {
     position: fixed;
     inset: 0;
-    background: url https://www.google.com/search?q=rain+live+wallpaper+gif&udm=2&sxsrf=APpeQnsrhKKQwtAhFNKDTQA8pXQjOBAzEw%3A1782818992076#sv=CAMSVhoyKhBlLVN3SGFMQXVHV2V2Q1FNMg5Td0hhTEF1R1dldkNRTToOUVpiaWtJbUgxN2o4T00gBCocCgZtb3NhaWMSEGUtU3dIYUxBdUdXZXZDUU0YADABGAcg26DJmgRKCBABGAEgASgB center/cover no-repeat;
-    /* If you want a subtle animated gradient on top of the GIF,
-       uncomment the lines below and keep the GIF as the background image */
-    /* background: 
-        linear-gradient(135deg, #0a0a0a, #111111 30%, #0a0a0a 60%, #111111),
-        url('YOUR_DIRECT_IMAGE_URL_HERE') center/cover no-repeat; */
+    background: url('batman-rain-gif-desktop-wallpaper.gif')
+                center / cover no-repeat;
     z-index: -3;
 }
 
 /* -------------------------------------------------
-   RAIN – three CSS layers for depth (still works on top of the GIF)
+   RAIN – three CSS layers for depth
    ------------------------------------------------- */
 .rain {
     position: fixed;
     inset: 0;
-    pointer-events: none;                 /* never blocks clicks */
+    pointer-events: none;
     overflow: hidden;
     z-index: -2;
 }
-
-/* Base layer */
 .rain,
 .rain::before,
 .rain::after {
@@ -56,25 +50,19 @@ body {
     background-image:
         linear-gradient(transparent, rgba(255,255,255,.15) 50%, transparent);
     background-repeat: repeat;
-    background-size: 2px 100px;           /* width of a drop, height of its trail */
+    background-size: 2px 100px;
     animation: fall 1.5s linear infinite;
 }
-
-/* Mid‑distance layer – larger & slower */
 .rain::before {
     background-size: 2px 150px;
     animation-duration: 2s;
     opacity: .6;
 }
-
-/* Near‑distance layer – smaller & faster */
 .rain::after {
     background-size: 2px 80px;
     animation-duration: 1s;
     opacity: .4;
 }
-
-/* Random horizontal offsets for each layer */
 .rain      { background-position: 0% 0%; }
 .rain::before { background-position: 33% 0%; }
 .rain::after  { background-position: 66% 0%; }
