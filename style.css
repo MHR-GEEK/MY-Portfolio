@@ -107,7 +107,7 @@ body {
 .spotify-wrapper {
     max-width: 760px;
     margin: 0 auto 2rem;
-    padding: 0 2rem;
+    padding: 0 -1rem;
 }
 
 /* ============================================================== 
