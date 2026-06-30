@@ -28,7 +28,7 @@ body {
 .wallpaper {
     position: fixed;
     inset: 0;
-    background: url('https://www.google.com/search?q=rain+live+wallpaper+gif&udm=2&sxsrf=APpeQnsrhKKQwtAhFNKDTQA8pXQjOBAzEw%3A1782818992076#sv=CAMSVhoyKhBlLVN3SGFMQXVHV2V2Q1FNMg5Td0hhTEF1R1dldkNRTToOUVpiaWtJbUgxN2o4T00gBCocCgZtb3NhaWMSEGUtU3dIYUxBdUdXZXZDUU0YADABGAcg26DJmgRKCBABGAEgASgB') center/cover no-repeat;
+    background: url https://www.google.com/search?q=rain+live+wallpaper+gif&udm=2&sxsrf=APpeQnsrhKKQwtAhFNKDTQA8pXQjOBAzEw%3A1782818992076#sv=CAMSVhoyKhBlLVN3SGFMQXVHV2V2Q1FNMg5Td0hhTEF1R1dldkNRTToOUVpiaWtJbUgxN2o4T00gBCocCgZtb3NhaWMSEGUtU3dIYUxBdUdXZXZDUU0YADABGAcg26DJmgRKCBABGAEgASgB center/cover no-repeat;
     /* If you want a subtle animated gradient on top of the GIF,
        uncomment the lines below and keep the GIF as the background image */
     /* background: 
