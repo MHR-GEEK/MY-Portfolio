@@ -11,7 +11,7 @@
 html { font-size: 100%; }
 body {
     font-family: 'Inter', sans-serif;
-    background: #000;                     /* fallback black */
+    background: #000;                     /* fallback dark colour */
     color: #fff;
     min-height: 100vh;
     overflow-x: hidden;
@@ -23,57 +23,18 @@ body {
 }
 
 /* -------------------------------------------------
-   STATIC BACKGROUND (Superman wallpaper)
+   STATIC BACKGROUND – Superman picture
    ------------------------------------------------- */
-.wallpaper {
+.background {
     position: fixed;
     inset: 0;
-    /* ----  REPLACE the URL below with your own file path if you host it locally  ---- */
+    /* ----  Use the direct URL you provided or replace with a local file ---- */
     background: url('https://prod-files-secure.s3.us-west-2.amazonaws.com/ee5e342f-754c-4ae4-91a4-2cf2ce6c12f4/1f6b8b7d-7b3e-49e5-9e7b-3d2e7a4c8f9b/superman_wallpaper.jpg')
                 center / cover no-repeat;
-    /* Optional: a subtle dark overlay so the cards stay readable */
-    background-color: rgba(0,0,0,.35);
+    /* Dark overlay so white text stays readable */
+    background-color: rgba(0,0,0,.45);
     background-blend-mode: multiply;
-    z-index: -3;
-}
-
-/* -------------------------------------------------
-   RAIN – three CSS layers for depth (still works on top of the picture)
-   ------------------------------------------------- */
-.rain {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: -2;
-}
-.rain,
-.rain::before,
-.rain::after {
-    content: "";
-    background-image:
-        linear-gradient(transparent, rgba(255,255,255,.15) 50%, transparent);
-    background-repeat: repeat;
-    background-size: 2px 100px;
-    animation: fall 1.5s linear infinite;
-}
-.rain::before {
-    background-size: 2px 150px;
-    animation-duration: 2s;
-    opacity: .6;
-}
-.rain::after {
-    background-size: 2px 80px;
-    animation-duration: 1s;
-    opacity: .4;
-}
-.rain      { background-position: 0% 0%; }
-.rain::before { background-position: 33% 0%; }
-.rain::after  { background-position: 66% 0%; }
-
-@keyframes fall {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+    z-index: -1;
 }
 
 /* -------------------------------------------------
@@ -99,13 +60,13 @@ body {
     display: grid;
     gap: 1.5rem;
     width: 100%;
-    max-width: 1200px;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     z-index: 1;
 }
 
 /* -------------------------------------------------
-   CARD – glassmorphism + gold hover
+   CARD – simple glass‑morphism (no animation)
    ------------------------------------------------- */
 .card {
     background: rgba(255,255,255,.07);
@@ -116,9 +77,7 @@ body {
     color: #fff;
     border: 1px solid rgba(255,255,255,.1);
     backdrop-filter: blur(12px);
-    transition: transform .3s ease,
-                box-shadow .3s ease,
-                border-color .3s ease;
+    transition: transform .2s ease, border-color .2s ease;
 }
 .card h2 {
     font-weight: 600;
@@ -126,36 +85,10 @@ body {
     margin: 0;
 }
 
-/* Hover – lift, gold glow, slight 3‑D tilt */
+/* Hover – subtle lift & gold border */
 .card:hover {
-    transform: translateY(-6px) rotateX(4deg) rotateY(-4deg);
-    box-shadow: 0 0 30px rgba(212,175,55,.6);
+    transform: translateY(-4px);
     border-color: #d4af37;
-}
-
-/* -------------------------------------------------
-   PLACEHOLDER CARD – animated gold border
-   ------------------------------------------------- */
-.placeholder {
-    cursor: default;
-    pointer-events: none;
-    position: relative;
-}
-.placeholder::after {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: 1rem;
-    background: linear-gradient(45deg,
-        transparent,
-        #d4af37,
-        transparent);
-    background-size: 200% 200%;
-    animation: borderPulse 3s linear infinite;
-}
-@keyframes borderPulse {
-    0%,100% { background-position: 0% 50%; }
-    50%     { background-position: 100% 50%; }
 }
 
 /* -------------------------------------------------
@@ -166,7 +99,7 @@ body {
 }
 
 /* -------------------------------------------------
-   OPTIONAL DARK SCROLLBAR
+   OPTIONAL DARK SCROLLBAR (nice for long pages)
    ------------------------------------------------- */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #111; }
