@@ -29,7 +29,7 @@ body {
     position: fixed;
     inset: 0;
     /* ----  Use the direct URL you provided or replace with a local file ---- */
-    background: url('https://prod-files-secure.s3.us-west-2.amazonaws.com/ee5e342f-754c-4ae4-91a4-2cf2ce6c12f4/1f6b8b7d-7b3e-49e5-9e7b-3d2e7a4c8f9b/superman_wallpaper.jpg')
+    background: url('     ')
                 center / cover no-repeat;
     /* Dark overlay so white text stays readable */
     background-color: rgba(0,0,0,.45);
