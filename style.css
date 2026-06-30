@@ -29,7 +29,7 @@ body {
     position: fixed;
     inset: 0;
     /* ----  Use the direct URL you provided or replace with a local file ---- */
-    background: url('     ')
+    background-image: url("background.jpg");
                 center / cover no-repeat;
     /* Dark overlay so white text stays readable */
     background-color: rgba(0,0,0,.45);
