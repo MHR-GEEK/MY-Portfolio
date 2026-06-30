@@ -11,7 +11,7 @@
 html { font-size: 100%; }
 body {
     font-family: 'Inter', sans-serif;
-    background: #000;                     /* AMOLED black fallback */
+    background: #000;                     /* fallback AMOLED black */
     color: #fff;
     min-height: 100vh;
     overflow-x: hidden;
@@ -23,29 +23,23 @@ body {
 }
 
 /* ==============================================================
-   LIVE WALLPAPER – animated gradient (gives a “screen” feel)
+   LIVE WALLPAPER – replace the placeholder URL with your own GIF
    ============================================================== */
 .wallpaper {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg,
-        #0a0a0a 0%,
-        #111111 30%,
-        #0a0a0a 60%,
-        #111111 100%);
-    background-size: 400% 400%;
-    animation: gradientMove 20s linear infinite;
+    background: url('YOUR_DIRECT_IMAGE_URL_HERE') center/cover no-repeat;
+    /* If you want a subtle animated gradient on top of the GIF,
+       uncomment the lines below and keep the GIF as the background image */
+    /* background: 
+        linear-gradient(135deg, #0a0a0a, #111111 30%, #0a0a0a 60%, #111111),
+        url('YOUR_DIRECT_IMAGE_URL_HERE') center/cover no-repeat; */
     z-index: -3;
 }
-@keyframes gradientMove {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
 
-/* ==============================================================
-   RAIN – three CSS layers for depth
-   ============================================================== */
+/* -------------------------------------------------
+   RAIN – three CSS layers for depth (still works on top of the GIF)
+   ------------------------------------------------- */
 .rain {
     position: fixed;
     inset: 0;
@@ -60,7 +54,6 @@ body {
 .rain::after {
     content: "";
     background-image:
-        /* a vertical line = a drop */
         linear-gradient(transparent, rgba(255,255,255,.15) 50%, transparent);
     background-repeat: repeat;
     background-size: 2px 100px;           /* width of a drop, height of its trail */
@@ -91,9 +84,9 @@ body {
     100% { transform: translateY(100%); }
 }
 
-/* ==============================================================
+/* -------------------------------------------------
    TITLE
-   ============================================================== */
+   ------------------------------------------------- */
 .title {
     margin-bottom: 2rem;
     text-align: center;
@@ -107,9 +100,9 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-/* ==============================================================
+/* -------------------------------------------------
    GRID LAYOUT
-   ============================================================== */
+   ------------------------------------------------- */
 .grid {
     display: grid;
     gap: 1.5rem;
@@ -119,9 +112,9 @@ body {
     z-index: 1;
 }
 
-/* ==============================================================
+/* -------------------------------------------------
    CARD – glassmorphism + gold hover
-   ============================================================== */
+   ------------------------------------------------- */
 .card {
     background: rgba(255,255,255,.07);
     border-radius: 1rem;
@@ -148,9 +141,9 @@ body {
     border-color: #d4af37;
 }
 
-/* ==============================================================
+/* -------------------------------------------------
    PLACEHOLDER CARD – animated gold border
-   ============================================================== */
+   ------------------------------------------------- */
 .placeholder {
     cursor: default;
     pointer-events: none;
@@ -173,16 +166,16 @@ body {
     50%     { background-position: 100% 50%; }
 }
 
-/* ==============================================================
+/* -------------------------------------------------
    RESPONSIVE TWEAKS
-   ============================================================== */
+   ------------------------------------------------- */
 @media (max-width: 480px) {
     .card { padding: 1.5rem 1rem; }
 }
 
-/* ==============================================================
+/* -------------------------------------------------
    OPTIONAL DARK SCROLLBAR
-   ============================================================== */
+   ------------------------------------------------- */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #111; }
 ::-webkit-scrollbar-thumb {
