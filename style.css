@@ -105,8 +105,8 @@ body {
    Spotify embed wrapper
    ------------------------------------------------- */
 .spotify-wrapper {
-    max-width: 600px;
-    margin: 0 auto 4rem;
+    max-width: 300px;
+    margin: 0 auto 2rem;
     padding: 0 .5rem;
 }
 
