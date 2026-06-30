@@ -30,7 +30,7 @@ body {
     position: fixed;
     inset: 0;
     /* Adjust the path if you move the image elsewhere */
-    background: url('Images/superman.jpg')
+    background: url('Images/batman-rain-gif-desktop-wallpaper.gif')
                 center / cover no-repeat;
     /* Dark overlay so foreground text stays readable */
     background-color: rgba(0, 0, 0, .45);
