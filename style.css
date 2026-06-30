@@ -23,24 +23,27 @@ body {
 }
 
 /* -------------------------------------------------
-   LIVE WALLPAPER – **LOCAL GIF**
+   STATIC BACKGROUND (Superman wallpaper)
    ------------------------------------------------- */
 .wallpaper {
     position: fixed;
     inset: 0;
-    /* ---->  THIS LINE MUST POINT to the exact file name  <---- */
-    background: url('rain-wallpaper.gif')   /* <-- change if you rename the file */
+    /* ----  REPLACE the URL below with your own file path if you host it locally  ---- */
+    background: url('https://prod-files-secure.s3.us-west-2.amazonaws.com/ee5e342f-754c-4ae4-91a4-2cf2ce6c12f4/1f6b8b7d-7b3e-49e5-9e7b-3d2e7a4c8f9b/superman_wallpaper.jpg')
                 center / cover no-repeat;
-    z-index: -3;               /* behind everything else */
+    /* Optional: a subtle dark overlay so the cards stay readable */
+    background-color: rgba(0,0,0,.35);
+    background-blend-mode: multiply;
+    z-index: -3;
 }
 
 /* -------------------------------------------------
-   RAIN – three CSS layers for depth (still works on top of the GIF)
+   RAIN – three CSS layers for depth (still works on top of the picture)
    ------------------------------------------------- */
 .rain {
     position: fixed;
     inset: 0;
-    pointer-events: none;                 /* never blocks clicks */
+    pointer-events: none;
     overflow: hidden;
     z-index: -2;
 }
@@ -51,7 +54,7 @@ body {
     background-image:
         linear-gradient(transparent, rgba(255,255,255,.15) 50%, transparent);
     background-repeat: repeat;
-    background-size: 2px 100px;           /* width of a drop, height of its trail */
+    background-size: 2px 100px;
     animation: fall 1.5s linear infinite;
 }
 .rain::before {
