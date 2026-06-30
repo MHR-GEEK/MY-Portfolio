@@ -1,6 +1,6 @@
-/* -------------------------------------------------
+/* ==============================================================
    GLOBAL RESET & BASIC SETTINGS
-------------------------------------------------- */
+   ============================================================== */
 *,
 *::before,
 *::after {
@@ -11,66 +11,89 @@
 html { font-size: 100%; }
 body {
     font-family: 'Inter', sans-serif;
-    background: #000;                     /* AMOLED black */
+    background: #000;                     /* AMOLED black fallback */
     color: #fff;
     min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden;
-    position: relative;
     padding: 2rem 1rem;
 }
 
-/* -------------------------------------------------
-   RAINY FUTURISTIC SCREEN
-   – three layers of animated drops for depth
-------------------------------------------------- */
+/* ==============================================================
+   LIVE WALLPAPER – animated gradient (gives a “screen” feel)
+   ============================================================== */
+.wallpaper {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg,
+        #0a0a0a 0%,
+        #111111 30%,
+        #0a0a0a 60%,
+        #111111 100%);
+    background-size: 400% 400%;
+    animation: gradientMove 20s linear infinite;
+    z-index: -3;
+}
+@keyframes gradientMove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ==============================================================
+   RAIN – three CSS layers for depth
+   ============================================================== */
 .rain {
     position: fixed;
     inset: 0;
     pointer-events: none;                 /* never blocks clicks */
     overflow: hidden;
-    background: #0a0a0a;                 /* very dark base */
     z-index: -2;
 }
 
-/* each ::before / ::after layer = a set of drops */
+/* Base layer */
+.rain,
 .rain::before,
-.rain::after,
-.rain {
+.rain::after {
     content: "";
     background-image:
-        /* tiny vertical line = a drop */
+        /* a vertical line = a drop */
         linear-gradient(transparent, rgba(255,255,255,.15) 50%, transparent);
+    background-repeat: repeat;
     background-size: 2px 100px;           /* width of a drop, height of its trail */
-    animation: rain 1.5s linear infinite;
+    animation: fall 1.5s linear infinite;
 }
+
+/* Mid‑distance layer – larger & slower */
 .rain::before {
     background-size: 2px 150px;
     animation-duration: 2s;
     opacity: .6;
 }
+
+/* Near‑distance layer – smaller & faster */
 .rain::after {
     background-size: 2px 80px;
     animation-duration: 1s;
     opacity: .4;
 }
 
-/* random horizontal positions for each layer */
+/* Random horizontal offsets for each layer */
 .rain      { background-position: 0% 0%; }
 .rain::before { background-position: 33% 0%; }
 .rain::after  { background-position: 66% 0%; }
 
-/* falling animation */
-@keyframes rain {
+@keyframes fall {
     0%   { transform: translateY(-100%); }
     100% { transform: translateY(100%); }
 }
 
-/* -------------------------------------------------
+/* ==============================================================
    TITLE
-------------------------------------------------- */
+   ============================================================== */
 .title {
     margin-bottom: 2rem;
     text-align: center;
@@ -84,9 +107,9 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-/* -------------------------------------------------
+/* ==============================================================
    GRID LAYOUT
-------------------------------------------------- */
+   ============================================================== */
 .grid {
     display: grid;
     gap: 1.5rem;
@@ -96,9 +119,9 @@ body {
     z-index: 1;
 }
 
-/* -------------------------------------------------
+/* ==============================================================
    CARD – glassmorphism + gold hover
-------------------------------------------------- */
+   ============================================================== */
 .card {
     background: rgba(255,255,255,.07);
     border-radius: 1rem;
@@ -125,9 +148,9 @@ body {
     border-color: #d4af37;
 }
 
-/* -------------------------------------------------
+/* ==============================================================
    PLACEHOLDER CARD – animated gold border
-------------------------------------------------- */
+   ============================================================== */
 .placeholder {
     cursor: default;
     pointer-events: none;
@@ -150,16 +173,16 @@ body {
     50%     { background-position: 100% 50%; }
 }
 
-/* -------------------------------------------------
+/* ==============================================================
    RESPONSIVE TWEAKS
-------------------------------------------------- */
+   ============================================================== */
 @media (max-width: 480px) {
     .card { padding: 1.5rem 1rem; }
 }
 
-/* -------------------------------------------------
+/* ==============================================================
    OPTIONAL DARK SCROLLBAR
-------------------------------------------------- */
+   ============================================================== */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #111; }
 ::-webkit-scrollbar-thumb {
