@@ -1,0 +1,105 @@
+/* ==== Global ==== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html { font-size: 100%; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: #000;                     /* AMOLED black */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+/* ==== Title ==== */
+.title {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.title h1 {
+    font-weight: 700;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    background: linear-gradient(90deg, #d4af37, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==== Grid layout ==== */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* ==== Card ==== */
+.card {
+    background: rgba(255, 255, 255, 0.07);   /* glass effect */
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card h2 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+/* Hover effect – lift & gold glow */
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    border-color: #d4af37;
+}
+
+/* Placeholder cards – subtle animated border */
+.placeholder {
+    cursor: default;
+    pointer-events: none;
+    position: relative;
+}
+.placeholder::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 1rem;
+    background: linear-gradient(45deg,
+        transparent,
+        #d4af37,
+        transparent);
+    animation: borderPulse 3s linear infinite;
+}
+@keyframes borderPulse {
+    0%,100% { background-position: 0% 50%; }
+    50%     { background-position: 100% 50%; }
+}
+
+/* ==== Responsive typography ==== */
+@media (max-width: 480px) {
+    .card { padding: 1.5rem 1rem; }
+}
+
+/* ==== Dark scrollbars (optional) ==== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #111;
+}
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
