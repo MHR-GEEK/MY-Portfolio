@@ -1,5 +1,5 @@
 /* -------------------------------------------------
-   GLOBAL SETTINGS
+   GLOBAL RESET & BASIC SETTINGS
 ------------------------------------------------- */
 *,
 *::before,
@@ -23,50 +23,49 @@ body {
 }
 
 /* -------------------------------------------------
-   ANIMATED BACKGROUND (gradient that slowly moves)
+   RAINY FUTURISTIC SCREEN
+   – three layers of animated drops for depth
 ------------------------------------------------- */
-.bg-animation {
+.rain {
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg,
-        #0a0a0a 0%,
-        #111 30%,
-        #0a0a0a 60%,
-        #111 100%);
-    background-size: 400% 400%;
-    animation: bgMove 20s linear infinite;
+    pointer-events: none;                 /* never blocks clicks */
+    overflow: hidden;
+    background: #0a0a0a;                 /* very dark base */
     z-index: -2;
 }
-@keyframes bgMove {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+
+/* each ::before / ::after layer = a set of drops */
+.rain::before,
+.rain::after,
+.rain {
+    content: "";
+    background-image:
+        /* tiny vertical line = a drop */
+        linear-gradient(transparent, rgba(255,255,255,.15) 50%, transparent);
+    background-size: 2px 100px;           /* width of a drop, height of its trail */
+    animation: rain 1.5s linear infinite;
+}
+.rain::before {
+    background-size: 2px 150px;
+    animation-duration: 2s;
+    opacity: .6;
+}
+.rain::after {
+    background-size: 2px 80px;
+    animation-duration: 1s;
+    opacity: .4;
 }
 
-/* -------------------------------------------------
-   FLOATING IMAGE (slow drift + subtle rotation)
-------------------------------------------------- */
-.floating-image {
-    position: absolute;
-    top: 10%;
-    right: -10%;
-    width: 260px;
-    max-width: 30vw;
-    pointer-events: none;               /* never blocks clicks */
-    animation: float 12s ease-in-out infinite;
-    z-index: -1;
-}
-.floating-image img {
-    width: 100%;
-    border-radius: 1rem;
-    filter: drop-shadow(0 0 20px rgba(212,175,55,.4));
-}
-@keyframes float {
-    0%   { transform: translate(0, 0) rotate(0deg); }
-    25%  { transform: translate(-10px, 15px) rotate(-2deg); }
-    50%  { transform: translate(0, 20px) rotate(2deg); }
-    75%  { transform: translate(10px, -15px) rotate(-2deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
+/* random horizontal positions for each layer */
+.rain      { background-position: 0% 0%; }
+.rain::before { background-position: 33% 0%; }
+.rain::after  { background-position: 66% 0%; }
+
+/* falling animation */
+@keyframes rain {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
 }
 
 /* -------------------------------------------------
@@ -98,7 +97,7 @@ body {
 }
 
 /* -------------------------------------------------
-   CARD STYLE (glassmorphism + gold hover)
+   CARD – glassmorphism + gold hover
 ------------------------------------------------- */
 .card {
     background: rgba(255,255,255,.07);
@@ -119,7 +118,7 @@ body {
     margin: 0;
 }
 
-/* Hover – lift, gold glow, subtle 3‑D tilt */
+/* Hover – lift, gold glow, slight 3‑D tilt */
 .card:hover {
     transform: translateY(-6px) rotateX(4deg) rotateY(-4deg);
     box-shadow: 0 0 30px rgba(212,175,55,.6);
@@ -127,7 +126,7 @@ body {
 }
 
 /* -------------------------------------------------
-   PLACEHOLDER CARD (animated gold border)
+   PLACEHOLDER CARD – animated gold border
 ------------------------------------------------- */
 .placeholder {
     cursor: default;
@@ -156,11 +155,10 @@ body {
 ------------------------------------------------- */
 @media (max-width: 480px) {
     .card { padding: 1.5rem 1rem; }
-    .floating-image { display: none; } /* hide on very small screens */
 }
 
 /* -------------------------------------------------
-   OPTIONAL SCROLLBAR (dark theme)
+   OPTIONAL DARK SCROLLBAR
 ------------------------------------------------- */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #111; }
